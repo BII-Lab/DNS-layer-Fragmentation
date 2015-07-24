@@ -1,8 +1,7 @@
 This code implement proxies for DNS application-level fragmentation,
-based on an idea originally submitted on the IETF DNSOP mailing list
-by Mukund Sivaraman <muks@isc.org>:
+based on an IETF draft:
 
-  https://www.ietf.org/mail-archive/web/dnsop/current/msg12964.html
+http://www.ietf.org/id/draft-muks-dns-message-fragments-00.txt
 
 In IPv4, datagrams that do not fit into a single physical packet are
 sometimes split into several smaller packets and reassembled by the

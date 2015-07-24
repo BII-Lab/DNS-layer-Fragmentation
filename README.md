@@ -31,3 +31,42 @@ In principle, the server proxy could be put in front of any DNS
 authoritative server to provide support for DNS application-level
 fragmentation. Using the client proxy in front of a normal DNS
 resolver would require a bit more work.
+
+Construction
+------------
+
+To compile the code, make sure your have install golang 1.4 version and  already compiled go dns lib written by miekg(https://github.com/miekg/dns).
+
+go get github.com/BII-Lab/DNS-layer-Fragmentation/
+go build github.com/BII-Lab/DNSoverHTTPinGO/ClientProxy
+go build github.com/BII-Lab/DNSoverHTTPinGO/ServerProxy
+
+Server Installation
+-------------------
+
+The server proxy will need a working name server configuration on your server. The servershould be reachable by UDP and TCP, and you should have a clear ICMP path toit, as well as full MTU (1500 octets or larger) and the ability to receive. And the server proxy need be assigned a port to listen on as the port for this proxy.
+fragmented UDP (to make EDNS0 usable.)
+
+1.compile ServerProxy.
+2.make sure you have a working resovler.
+3.run the ServerProxy as ./ServerProxy -proxy "[your resovler ip address]" -listen ":[your assigned port]". For exmaple ./ServerProxy -proxy "127.0.0.1:53" -listen ":10000"
+
+Client Installation
+-------------------
+
+The ClientProxy will listen on the port assigned(defort port is 53). And it must also be which type proxy service to connect to. 
+
+1. compile ClientProxy.
+2. if you want to redirect all you nomal DNS traffic to the proxy, configure your /etc/resolv.conf. Set nameserver to 127.0.0.1.(optional)
+3.run ClientProxy. Example ./ClientProxy -proxy="192.168.37.121:10000" -listen ":53"
+
+Testing
+-------
+
+Make sure you have a working "dig" command. If you started your client side
+dns_proxy service on 127.0.0.1, then you should be able to say:
+
+	dig @127.0.0.1 www.vix.su aaaa
+
+and get a result back. If you want to see the details, you can use -debug for more running information.
+

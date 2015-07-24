@@ -37,11 +37,11 @@ Construction
 
 To compile the code, make sure your have install golang 1.4 version and  already compiled go dns lib written by miekg(https://github.com/miekg/dns).
 
-go get github.com/BII-Lab/DNS-layer-Fragmentation
+	go get github.com/BII-Lab/DNS-layer-Fragmentation
 
-go build github.com/BII-Lab/DNS-layer-Fragmentation/ClientProxy
+	go build github.com/BII-Lab/DNS-layer-Fragmentation/ClientProxy
 
-go build github.com/BII-Lab/DNS-layer-Fragmentation/ServerProxy
+	go build github.com/BII-Lab/DNS-layer-Fragmentation/ServerProxy
 
 Server Installation
 -------------------

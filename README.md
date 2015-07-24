@@ -37,7 +37,9 @@ Construction
 To compile the code, make sure your have install golang 1.4 version and  already compiled go dns lib written by miekg(https://github.com/miekg/dns).
 
 go get github.com/BII-Lab/DNS-layer-Fragmentation
+
 go build github.com/BII-Lab/DNSoverHTTPinGO/ClientProxy
+
 go build github.com/BII-Lab/DNSoverHTTPinGO/ServerProxy
 
 Server Installation
@@ -47,7 +49,9 @@ The server proxy will need a working name server configuration on your server. T
 fragmented UDP (to make EDNS0 usable.)
 
 1.compile ServerProxy.
+
 2.make sure you have a working resovler.
+
 3.run the ServerProxy as ./ServerProxy -proxy "[your resovler ip address]" -listen ":[your assigned port]". For exmaple ./ServerProxy -proxy "127.0.0.1:53" -listen ":10000"
 
 Client Installation
@@ -56,7 +60,9 @@ Client Installation
 The ClientProxy will listen on the port assigned(defort port is 53). And it must also be which type proxy service to connect to. 
 
 1. compile ClientProxy.
+
 2. if you want to redirect all you nomal DNS traffic to the proxy, configure your /etc/resolv.conf. Set nameserver to 127.0.0.1.(optional)
+
 3.run ClientProxy. Example ./ClientProxy -proxy="192.168.37.121:10000" -listen ":53"
 
 Testing

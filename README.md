@@ -1,7 +1,8 @@
 This code implement proxies for DNS application-level fragmentation,
-based on an IETF draft:
+based on an idea originally submitted on the IETF DNSOP mailing list
+by Mukund Sivaraman <muks@isc.org>:
 
-http://www.ietf.org/id/draft-muks-dns-message-fragments-00.txt
+  https://www.ietf.org/mail-archive/web/dnsop/current/msg12964.html
 
 In IPv4, datagrams that do not fit into a single physical packet are
 sometimes split into several smaller packets and reassembled by the
@@ -38,9 +39,9 @@ To compile the code, make sure your have install golang 1.4 version and  already
 
 go get github.com/BII-Lab/DNS-layer-Fragmentation
 
-go build github.com/BII-Lab/DNSoverHTTPinGO/ClientProxy
+go build github.com/BII-Lab/DNS-layer-Fragmentation/ClientProxy
 
-go build github.com/BII-Lab/DNSoverHTTPinGO/ServerProxy
+go build github.com/BII-Lab/DNS-layer-Fragmentation/ServerProxy
 
 Server Installation
 -------------------

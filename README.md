@@ -36,7 +36,7 @@ Construction
 
 To compile the code, make sure your have install golang 1.4 version and  already compiled go dns lib written by miekg(https://github.com/miekg/dns).
 
-go get github.com/BII-Lab/DNS-layer-Fragmentation/
+go get github.com/BII-Lab/DNS-layer-Fragmentation
 go build github.com/BII-Lab/DNSoverHTTPinGO/ClientProxy
 go build github.com/BII-Lab/DNSoverHTTPinGO/ServerProxy
 
@@ -65,7 +65,7 @@ Testing
 Make sure you have a working "dig" command. If you started your client side
 dns_proxy service on 127.0.0.1, then you should be able to say:
 
-	dig @127.0.0.1 www.vix.su aaaa
+	dig @127.0.0.1 www.baidu.com a
 
 and get a result back. If you want to see the details, you can use -debug for more running information.
 

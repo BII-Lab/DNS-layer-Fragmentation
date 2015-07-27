@@ -1,3 +1,5 @@
+#DNS-layer-Fragmentation
+
 Introduction
 ------------
 
@@ -37,12 +39,15 @@ resolver would require a bit more work.
 Construction
 ------------
 
-To compile the code, make sure your have install golang 1.4 version and  already compiled go dns lib written by miekg(https://github.com/miekg/dns).
+To compile the code, make sure your have install golang 1.4 version and  already compiled go dns lib written by miekg(https://github.com/miekg/dns).You can find introduction's in miekg's github.To simply get and compile miekg's package in golang, just run:
+
+	go get github.com/miekg/dns
+	go build github.com/miekg/dns
+
+Then you can compile the code in this repository by:
 
 	go get github.com/BII-Lab/DNS-layer-Fragmentation
-
 	go build github.com/BII-Lab/DNS-layer-Fragmentation/ClientProxy
-
 	go build github.com/BII-Lab/DNS-layer-Fragmentation/ServerProxy
 
 Server Installation
@@ -86,4 +91,5 @@ dns_proxy service on 127.0.0.1, then you should be able to say:
 	dig @127.0.0.1 www.baidu.com a
 
 and get a result back. If you want to see the details, you can use -debug for more running information.
+
 

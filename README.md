@@ -1,3 +1,6 @@
+Introduction
+------------
+
 This code implement proxies for DNS application-level fragmentation,
 based on an idea originally submitted on the IETF DNSOP mailing list
 by Mukund Sivaraman <muks@isc.org>:

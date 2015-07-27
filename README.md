@@ -63,8 +63,10 @@ fragmented UDP (to make EDNS0 usable.)
 2.make sure you have a working resovler.
 
 3.run the ServerProxy as 
+	
 	./ServerProxy -proxy "[your resovler ip address]" -listen ":[your assigned port]". 
 For exmaple 
+	
 	./ServerProxy -proxy "127.0.0.1:53" -listen ":10000"
 
 Client Installation

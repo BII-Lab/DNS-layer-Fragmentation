@@ -44,11 +44,10 @@ To compile the code, make sure your have install golang 1.4 version and  already
 	go get github.com/miekg/dns
 	go build github.com/miekg/dns
 
-Then you can compile the code in this repository by:
+Then you can get the code in this repository by:
 
 	go get github.com/BII-Lab/DNS-layer-Fragmentation
-	go build github.com/BII-Lab/DNS-layer-Fragmentation/ClientProxy
-	go build github.com/BII-Lab/DNS-layer-Fragmentation/ServerProxy
+
 
 Server Installation
 -------------------
@@ -56,9 +55,9 @@ Server Installation
 The server proxy will need a working name server configuration on your server. The servershould be reachable by UDP and TCP, and you should have a clear ICMP path toit, as well as full MTU (1500 octets or larger) and the ability to receive. And the server proxy need be assigned a port to listen on as the port for this proxy.
 fragmented UDP (to make EDNS0 usable.)
 
-1.compile ServerProxy.
+1.compile the ServerProxy.
 
-	compile ServerProxy
+	go build github.com/BII-Lab/DNS-layer-Fragmentation/ServerProxy
 
 2.make sure you have a working resovler.
 
@@ -76,7 +75,7 @@ The ClientProxy will listen on the port assigned(defort port is 53). And it must
 
 1. compile ClientProxy.
 	
-	compile ClientProxy
+	go build github.com/BII-Lab/DNS-layer-Fragmentation/ClientProxy
 
 2. if you want to redirect all you nomal DNS traffic to the proxy, configure your /etc/resolv.conf. Set nameserver to 127.0.0.1.(optional)
 

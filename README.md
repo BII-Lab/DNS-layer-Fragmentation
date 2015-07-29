@@ -3,26 +3,24 @@
 Introduction
 ------------
 
-This code implement proxies for DNS application-level fragmentation,
+This code implements proxies for DNS application-level fragmentation,
 based on a IETF draft :
 
 	https://tools.ietf.org/id/draft-muks-dns-message-fragments-00.txt
 
 In IPv4, DNS datagrams that do not fit into a single physical packet are
 sometimes split into several smaller packets and reassembled by the
-network. The idea with these proxies is to investigate the idea of
-splitting DNS messages in the protocol itself, so they will not by
-fragmented by the IP layer.
+network. The idea with these proxies is to explore splitting DNS messages 
+in the protocol itself, so they will not by fragmented by the IP layer.
 
 This is a proof of concept setup, which provides a client proxy and a
 server proxy. The data flow works like this:
 
 * Query:
-  * DNS packets arrive at the client proxy, which listens on the
+  * DNS query packets arrive at the client proxy, which listens on the
     well-known port 53.
-  * The client proxy then sends the DNS packets over the network to a
-    custom port on the server proxy.
-  * The packets arrive at the server proxy, which then sends them to
+  * The client proxy then modified the parckets with a new EDNS0 OPT code and sends the DNS packets over the network to a custom port on the server proxy
+  * The packets arrive at the server proxy, which understand the new OPT code, then sends them to
     port 53 of the actual DNS server.
 * Reply:
   * The DNS server sends replies, which go back to the server proxy.

@@ -52,13 +52,13 @@ Server Installation
 
 The server proxy will need a working resolver on your server. The server should be reachable by UDP and TCP, and you should have a clear ICMP path to it, as well as full MTU (1500 octets or larger) and the ability to receive. And the server proxy need be assigned a port to listen on as the port for this proxy.
 
-1.compile the ServerProxy.
+1. compile the ServerProxy.
 
 	go build github.com/BII-Lab/DNS-layer-Fragmentation/ServerProxy
 
-2.make sure you have a working resovler.
+2. make sure you have a working resovler.
 
-3.run the ServerProxy as 
+3. run the ServerProxy as 
 	
 	./ServerProxy -proxy "[your resovler ip address]" -listen ":[your assigned port]"
 For exmaple, the resolver instance is running in the same server, we can use loopback address 

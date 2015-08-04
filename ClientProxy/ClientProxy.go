@@ -201,8 +201,8 @@ func main() {
 		max_entries     int64
 		expire_interval int64
 	)
-	flag.StringVar(&S_SERVERS, "proxy", "8.8.8.8:53,8.8.4.4:53", "we proxy requests to those servers")
-	flag.StringVar(&S_LISTEN, "listen", "[::]:53", "listen on (both tcp and udp)")
+	flag.StringVar(&S_SERVERS, "proxy", "127.0.0.1:53", "we proxy requests to those servers")
+	flag.StringVar(&S_LISTEN, "listen", "53", "listen on (both tcp and udp)")
 	flag.StringVar(&S_ACCESS, "access", "127.0.0.0/8,10.0.0.0/8", "allow those networks, use 0.0.0.0/0 to allow everything")
 	flag.IntVar(&timeout, "timeout", 5, "timeout")
 	flag.Int64Var(&expire_interval, "expire_interval", 300, "delete expired entries every N seconds")
@@ -230,15 +230,15 @@ func main() {
 		proxyer.ACCESS = append(proxyer.ACCESS, cidr)
 	}
 	for _, addr := range strings.Split(S_LISTEN, ",") {
-		_D("listening @ %s\n", addr)
+		_D("listening @ :%s\n", addr)
 		go func() {
-			if err := dns.ListenAndServe(addr, "udp", proxyer); err != nil {
+			if err := dns.ListenAndServe(":"+addr, "udp", proxyer); err != nil {
 				log.Fatal(err)
 			}
 		}()
 
 		go func() {
-			if err := dns.ListenAndServe(addr, "tcp", proxyer); err != nil {
+			if err := dns.ListenAndServe(":"+addr, "tcp", proxyer); err != nil {
 				log.Fatal(err)
 			}
 		}()

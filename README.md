@@ -73,16 +73,21 @@ The ClientProxy will listen on the port assigned (defaul port is 53). And it mus
 1. compile ClientProxy.
 	
 	go build github.com/BII-Lab/DNS-layer-Fragmentation/ClientProxy
+
 2. if you want to redirect all you nomal DNS traffic to the proxy, configure your /etc/resolv.conf. Set nameserver to 127.0.0.1.(optional)
 
 3. run ClientProxy, as:
 
 	./ClientProxy -proxy "ServerProxy IP:Port"
-For exaple if the server is ruing ServerPorxy on 202:104:10:10:10000, we use 
+
+For example if the server is ruing ServerPorxy on 202:104:10:10:10000, we use 
+
 	./ClientProxy -proxy 202:104:10:10:10000
+
 4. For more help information, you can use -h option
 	
 	./ClientProxy -h
+
 Testing
 -------
 

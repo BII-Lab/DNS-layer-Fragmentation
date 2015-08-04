@@ -37,7 +37,7 @@ resolver would require a bit more work.
 Construction
 ------------
 
-To compile the code, make sure your have install golang 1.4 version and  already compiled go dns lib written by miekg(https://github.com/miekg/dns).You can find introduction's in miekg's github.To simply get and compile miekg's package in golang, just run:
+To compile the code, make sure your have install golang 1.4 version and  already compiled go dns lib written by miekg (https://github.com/miekg/dns).You can find introduction's in miekg's github. To simply get and compile miekg's package in golang, just run:
 
 	go get github.com/miekg/dns
 	go build github.com/miekg/dns
@@ -50,8 +50,7 @@ Then you can get the code in this repository by:
 Server Installation
 -------------------
 
-The server proxy will need a working name server configuration on your server. The servershould be reachable by UDP and TCP, and you should have a clear ICMP path toit, as well as full MTU (1500 octets or larger) and the ability to receive. And the server proxy need be assigned a port to listen on as the port for this proxy.
-fragmented UDP (to make EDNS0 usable.)
+The server proxy will need a working resolver on your server. The server should be reachable by UDP and TCP, and you should have a clear ICMP path to it, as well as full MTU (1500 octets or larger) and the ability to receive. And the server proxy need be assigned a port to listen on as the port for this proxy.
 
 1.compile the ServerProxy.
 
@@ -61,15 +60,15 @@ fragmented UDP (to make EDNS0 usable.)
 
 3.run the ServerProxy as 
 	
-	./ServerProxy -proxy "[your resovler ip address]" -listen ":[your assigned port]". 
-For exmaple 
+	./ServerProxy -proxy "[your resovler ip address]" -listen ":[your assigned port]"
+For exmaple, the resolver instance is running in the same server, we can use loopback address 
 	
-	./ServerProxy -proxy "127.0.0.1:53" -listen ":10000"
+	./ServerProxy -proxy "127.0.0.1:53" -listen "10000"
 
 Client Installation
 -------------------
 
-The ClientProxy will listen on the port assigned(defort port is 53). And it must also be which type proxy service to connect to. 
+The ClientProxy will listen on the port assigned (defaul port is 53). And it must also be which type proxy service to connect to. 
 
 1. compile ClientProxy.
 	
@@ -77,18 +76,23 @@ The ClientProxy will listen on the port assigned(defort port is 53). And it must
 
 2. if you want to redirect all you nomal DNS traffic to the proxy, configure your /etc/resolv.conf. Set nameserver to 127.0.0.1.(optional)
 
-3.run ClientProxy. Example 
+3. run ClientProxy, as:
 
-	./ClientProxy -proxy="192.168.37.121:10000" -listen ":53"
+	./ClientProxy -proxy "ServerProxy IP:Port"
 
+For exaple if the server is ruing ServerPorxy on 202:104:10:10:10000, we use 
+	./ClientProxy -proxy 202:104:10:10:10000
+
+4. For more help information, you can use -h option
+	
+	./ClientProxy -h
 Testing
 -------
 
-Make sure you have a working "dig" command. If you started your client side
-dns_proxy service on 127.0.0.1, then you should be able to say:
+Make sure you have a working "dig" command. If you setup your ClientProxy and ServerProxy acorrding to the instruction, then you should be able to say:
 
-	dig @127.0.0.1 www.baidu.com a
+	dig @127.0.0.1 www.yeti-dns.org aaaa
 
-and get a result back. If you want to see the details, you can use -debug for more running information.
+and get a result back using our fragements proxy. If you want to see the details, you can use -debug for more running information.
 
 

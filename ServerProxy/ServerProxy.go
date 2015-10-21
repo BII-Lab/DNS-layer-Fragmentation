@@ -258,7 +258,7 @@ func main() {
 	)
 
 	flag.StringVar(&S_SERVERS, "proxy", "127.0.0.1:53", "we proxy requests to those servers")
-	flag.StringVar(&S_LISTEN, "listen", "[::]:5353", "listen on (both tcp and udp)")
+	flag.StringVar(&S_LISTEN, "listen", "[ipv6address]:5353,ipv4address:port", "listen on (both tcp and udp)")
 	flag.StringVar(&S_ACCESS, "access", "0.0.0.0/0", "allow those networks, use 0.0.0.0/0 to allow everything")
 	flag.IntVar(&timeout, "timeout", 5, "timeout")
 	flag.Int64Var(&expire_interval, "expire_interval", 300, "delete expired entries every N seconds")
